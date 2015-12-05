@@ -106,9 +106,9 @@ BLZ,Garifuna,F,6.8
 BLZ,Maya Languages,F,9.6
 BLZ,Spanish,F,31.6
 BMU,English,T,100.0
-BOL,AimarÃ¡,T,3.2
-BOL,GuaranÃ­,F,0.1
-BOL,KetÂšua,T,8.1
+BOL,Aimará,T,3.2
+BOL,Guaraní,F,0.1
+BOL,Ketšua,T,8.1
 BOL,Spanish,T,87.7
 BRA,German,F,0.5
 BRA,Indian Languages,F,0.2
@@ -153,14 +153,14 @@ CHE,French,T,19.2
 CHE,German,T,63.6
 CHE,Italian,T,7.7
 CHE,Romansh,T,0.6
-CHL,AimarÃ¡,F,0.5
+CHL,Aimará,F,0.5
 CHL,Araucan,F,9.6
 CHL,Rapa nui,F,0.2
 CHL,Spanish,T,89.7
 CHN,Chinese,T,92.0
 CHN,Dong,F,0.2
 CHN,Hui,F,0.8
-CHN,MantÂšu,F,0.9
+CHN,Mantšu,F,0.9
 CHN,Miao,F,0.7
 CHN,Mongolian,F,0.4
 CHN,Puyi,F,0.2
@@ -252,7 +252,7 @@ DOM,Creole French,F,2.0
 DOM,Spanish,T,98.0
 DZA,Arabic,T,86.0
 DZA,Berberi,F,14.0
-ECU,KetÂšua,F,7.0
+ECU,Ketšua,F,7.0
 ECU,Spanish,T,93.0
 EGY,Arabic,T,98.8
 EGY,Sinaberberi,F,0.0
@@ -350,9 +350,9 @@ GRD,Creole English,F,100.0
 GRL,Danish,T,12.5
 GRL,Greenlandic,T,87.5
 GTM,Cakchiquel,F,8.9
-GTM,KekchÃ­,F,4.9
+GTM,Kekchí,F,4.9
 GTM,Mam,F,2.7
-GTM,QuichÃ©,F,10.1
+GTM,Quiché,F,10.1
 GTM,Spanish,T,64.7
 GUF,Creole French,F,94.3
 GUF,Indian Languages,F,1.9
@@ -470,7 +470,7 @@ KGZ,Ukrainian,F,1.7
 KGZ,Uzbek,F,14.1
 KHM,Chinese,F,3.1
 KHM,Khmer,T,88.6
-KHM,TÂšam,F,2.4
+KHM,Tšam,F,2.4
 KHM,Vietnamese,F,5.5
 KIR,Kiribati,T,98.9
 KIR,Tuvalu,F,0.5
@@ -544,8 +544,8 @@ MDG,Malagasy,T,98.9
 MDV,Dhivehi,T,100.0
 MDV,English,F,0.0
 MEX,Mixtec,F,0.6
-MEX,NÃ¡huatl,F,1.8
-MEX,OtomÃ­,F,0.4
+MEX,Náhuatl,F,1.8
+MEX,Otomí,F,0.4
 MEX,Spanish,T,92.1
 MEX,Yucatec,F,1.1
 MEX,Zapotec,F,0.6
@@ -620,7 +620,7 @@ MYS,Iban,F,2.8
 MYS,Malay,T,58.4
 MYS,Tamil,F,3.9
 MYT,French,T,20.3
-MYT,MahorÃ©,F,41.9
+MYT,Mahoré,F,41.9
 MYT,Malagasy,F,16.1
 NAM,Afrikaans,F,9.5
 NAM,Caprivi,F,4.7
@@ -692,11 +692,11 @@ PAN,Arabic,F,0.6
 PAN,Creole English,F,14.0
 PAN,Cuna,F,2.0
 PAN,Embera,F,0.6
-PAN,GuaymÃ­,F,5.3
+PAN,Guaymí,F,5.3
 PAN,Spanish,T,76.8
 PCN,Pitcairnese,F,0.0
-PER,AimarÃ¡,T,2.3
-PER,KetÂšua,T,16.4
+PER,Aimará,T,2.3
+PER,Ketšua,T,16.4
 PER,Spanish,T,79.8
 PHL,Bicol,F,5.7
 PHL,Cebuano,F,23.3
@@ -724,7 +724,7 @@ PRK,Chinese,F,0.1
 PRK,Korean,T,99.9
 PRT,Portuguese,T,99.0
 PRY,German,F,0.9
-PRY,GuaranÃ­,T,40.1
+PRY,Guaraní,T,40.1
 PRY,Portuguese,F,3.2
 PRY,Spanish,T,55.1
 PSE,Arabic,F,95.9
@@ -836,7 +836,7 @@ TCD,Tandjile,F,6.5
 TGO,Ane,F,5.7
 TGO,Ewe,T,23.2
 TGO,Gurma,F,3.4
-TGO,KabyÃ©,T,13.8
+TGO,Kabyé,T,13.8
 TGO,Kotokoli,F,5.7
 TGO,Moba,F,5.4
 TGO,Naudemba,F,4.1
