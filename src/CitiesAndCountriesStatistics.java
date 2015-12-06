@@ -68,6 +68,28 @@ public class CitiesAndCountriesStatistics extends Configured implements Tool{
 	    }
 	}
 	
+	public static class MapProjectionClass extends MapReduceBase 
+	implements Mapper<LongWritable, Text, Text, Text>{
+		
+	    private Text district = new Text(); // type of output key
+	    private Text city = new Text();  // type of output value
+	    
+	    @Override
+	    public void map(LongWritable key, Text value, 
+	    				OutputCollector<Text, Text> output, Reporter reporter) throws IOException{
+	
+	    	String[] tuple = value.toString().split(",");
+	    	
+	    	String cityName = tuple[1];
+	    	String districtName = tuple[3];
+
+	    	district.set(districtName);
+	    	city.set(cityName);
+	    	System.err.println("district: " + cityName + "\tcity: " + cityName);
+	    	output.collect(district, new Text(cityName)); // emit key-value pair
+	    }
+	}
+	
 	public static class MapAggregationClass extends MapReduceBase 
 	implements Mapper<LongWritable, Text, Text, IntWritable>{
 		
@@ -89,7 +111,19 @@ public class CitiesAndCountriesStatistics extends Configured implements Tool{
 	    }
 	}
 	
+	
 	public static class ReduceSelectionClass extends MapReduceBase implements Reducer<Text, Text, Text, Text>{
+
+		@Override
+		public void reduce(Text key, Iterator<Text> values, 
+				OutputCollector<Text, Text> output, Reporter reporter) throws IOException{
+			while(values.hasNext()){
+				output.collect(key, values.next()); // create a pair <city, population>
+			}
+		}
+	}
+	
+	public static class ReduceProjectionClass extends MapReduceBase implements Reducer<Text, Text, Text, Text>{
 
 		@Override
 		public void reduce(Text key, Iterator<Text> values, 
@@ -136,8 +170,8 @@ public class CitiesAndCountriesStatistics extends Configured implements Tool{
 		  job.setJobName("Computing Selection by MapReduce");
 
 		  // 3.2.1 Create a job name "Computing Projection by MapReduce"
-//		  JobConf ProjectionJob = new JobConf(CitiesAndCountriesStatistics.class); // pass the class so Hadoop will locate the relevant JAR file by looking for the JAR file containing this class 
-//		  ProjectionJob.setJobName("Computing Projection by MapReduce");
+		  JobConf projectionJob = new JobConf(CitiesAndCountriesStatistics.class); // pass the class so Hadoop will locate the relevant JAR file by looking for the JAR file containing this class 
+		  projectionJob.setJobName("Computing Projection by MapReduce");
 		  
 		  // 3.4 Create a job name Aggregation by MapReduce
 		  JobConf aggregationJob = new JobConf(CitiesAndCountriesStatistics.class); // pass the class so Hadoop will locate the relevant JAR file by looking for the JAR file containing this class 
@@ -147,30 +181,40 @@ public class CitiesAndCountriesStatistics extends Configured implements Tool{
 		  job.setOutputKeyClass(Text.class);
 		  job.setOutputValueClass(Text.class);
 		  aggregationJob.setOutputKeyClass(Text.class);
-		  aggregationJob.setOutputValueClass(IntWritable.class);		  
+		  aggregationJob.setOutputValueClass(IntWritable.class);
+		  projectionJob.setOutputKeyClass(Text.class);
+		  projectionJob.setOutputValueClass(Text.class);
 		  
 		  // 3.1.3
 		  job.setMapperClass(MapSelectionClass.class);
 		  job.setReducerClass(ReduceSelectionClass.class);
+		  projectionJob.setMapperClass(MapProjectionClass.class);
+		  projectionJob.setReducerClass(ReduceProjectionClass.class);
 		  aggregationJob.setMapperClass(MapAggregationClass.class);
-		  aggregationJob.setReducerClass(ReduceAggregationClass.class);		  
+		  aggregationJob.setReducerClass(ReduceAggregationClass.class);	
+		  
 		  
 		  // 3.1.4
 		  job.setInputFormat(TextInputFormat.class);
 		  job.setOutputFormat(TextOutputFormat.class);
+		  projectionJob.setInputFormat(TextInputFormat.class);
+		  projectionJob.setOutputFormat(TextOutputFormat.class);
 		  aggregationJob.setInputFormat(TextInputFormat.class);
 		  aggregationJob.setOutputFormat(TextOutputFormat.class);
 
 		  // 3.1.5 Specify input paths
 		  FileInputFormat.setInputPaths(job, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectInput/city.txt"));	
+		  FileInputFormat.setInputPaths(projectionJob, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectInput/city.txt"));	
 		  // 3.4.5
 		  FileInputFormat.setInputPaths(aggregationJob, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectInput/city.txt"));	
 		  
 		  // 3.1.6 Specify output paths
 		  FileOutputFormat.setOutputPath(job, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectOutput1"));
+		  FileOutputFormat.setOutputPath(projectionJob, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectOutput2"));
 		  FileOutputFormat.setOutputPath(aggregationJob, new Path("hdfs://localhost:9000/user/hadoop/UML673ProjectOutput4"));
 
-		  JobClient.runJob(job);	
+		  JobClient.runJob(job);
+		  JobClient.runJob(projectionJob);
 		  JobClient.runJob(aggregationJob);
 	  }
 }
